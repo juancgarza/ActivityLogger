@@ -1,0 +1,41 @@
+<div class ="container">
+<h1>Activity Logs</h1>
+<br />
+<table class="table table-stripped table-bordered center">
+  <tr>
+    <th>Baby</th>
+    <th>Assistant</th>
+    <th>Activity</th>
+    <th>Start Time</th>
+    <th>Status</th>
+    <th>Duration</th>
+<% @activitylog.each do | activity_log | %>
+<tr>
+  <td><%= activity_log.baby.name%></td>
+  <td><%= activity_log.assistant.name %></td>
+  <td><%= activity_log.activity.name %></td>
+  <td><%= activity_log.start_time %></td>
+  <td>
+    <%= if activity_log.stop_time.present?
+      "Finished"
+    else
+      "In Progress"
+    end
+    %>
+  </td>
+  <td><%= if activity_log.stop_time.present?
+    "#{activity_log.duration} min"
+  else
+    "-"
+  end
+  %>
+</td>
+</tr>
+<% end %>
+
+</table>
+
+<div class="center">
+<%= will_paginate @activitylog , renderer: BootstrapPagination::Rails %>
+</div>
+</div>
