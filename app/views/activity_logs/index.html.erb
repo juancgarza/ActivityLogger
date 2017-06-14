@@ -1,6 +1,19 @@
 <div class ="container">
 <h1>Activity Logs</h1>
 <br />
+<div class ="row">
+  <div class="col-mid-4">
+<%= form_tag activity_logs_path, :method => 'get' do %>
+<%= collection_select(:activity_log, :baby_id , Baby.all , :id , :name , :prompt => true ) %>
+<% end %>
+</div>
+<div class="col-md-4">
+<%= form_tag activity_logs_path, :method => 'get' do %>
+<%= collection_select(:activity_log, :assistant_id , Assistant.all , :id , :name , :prompt => true ) %>
+<% end %>
+</div>
+</div>
+
 <table class="table table-stripped table-bordered center">
   <tr>
     <th>Baby</th>
