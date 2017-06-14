@@ -1,11 +1,14 @@
 class ActivityLog < ApplicationRecord
   validates   :baby_id , :assistant_id , :activity_id ,  presence: true
+  
+enum :status [:finished , :in_progress]
+
 
   belongs_to :assistant
   belongs_to :baby
   belongs_to :activity
 
-scope :in_progress, -> { where("duration is NULL")}
+#scope :in_progress, -> { where("duration is NULL")}
 
 scope :with_assistant_name, lambda { |assistant_name|
   where(assistant: { name: assistant_name }).joins(:assistant)
